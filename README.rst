@@ -32,7 +32,7 @@ Usage
        def post(self):
            form = SumForm(self.request.arguments)
            if form.validate():
-               self.write("Ok!")
+               self.write(str(form.data['a'] + form.data['b']))
            else:
                self.set_status(400)
                self.write("" % form.errors)
