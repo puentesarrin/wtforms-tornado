@@ -3,7 +3,7 @@
 from wtforms import compat
 
 
-version_tuple = (0, 0, 0)
+version_tuple = (0, 0, 1)
 
 
 def get_version_string():
