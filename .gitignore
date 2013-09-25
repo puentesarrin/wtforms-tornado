@@ -1,0 +1,18 @@
+# File extensions
+*.pyc
+*.pyo
+.*.swp
+.DS_Store
+*.nja
+
+# Extra Files
+MANIFEST
+WTForms.egg-info
+.coverage
+
+# Directories
+build/
+dist/
+docs/_build
+docs/html
+env/
