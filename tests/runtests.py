@@ -24,7 +24,8 @@ class SneakyField(Field):
 
 class TornadoWrapperTest(TestCase):
     def setUp(self):
-        self.test_values = HTTPRequest('GET', 'http://localhost?a=Apple&b=Banana&a=Cherry')
+        self.test_values = HTTPRequest('GET',
+            'http://localhost?a=Apple&b=Banana&a=Cherry')
         self.empty_mdict = TornadoInputWrapper({})
         self.filled_mdict = TornadoInputWrapper(self.test_values.arguments)
 
@@ -94,7 +95,8 @@ class TornadoApplicationTest(testing.AsyncHTTPTestCase,
     def test_wrong_form(self):
         response = self.fetch('/?fake=wtforms')
         self.assertEqual(response.code, 500)
-        self.assertEqual(response.body, b'{"search": ["Search field is required"]}')
+        self.assertEqual(response.body,
+                         b'{"search": ["Search field is required"]}')
 
     def test_translations_default(self):
         response = self.fetch('/?label=True&search=wtforms')
