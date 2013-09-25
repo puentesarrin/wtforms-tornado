@@ -46,7 +46,7 @@ class TornadoWrapperTest(TestCase):
         formdata = TornadoInputWrapper(self.filled_mdict)
         self.assertTrue(formdata)
         self.assertEqual(len(formdata), 2)
-        self.assertEqual(list(formdata), ['a', 'b'])
+        self.assertEqual(sorted(list(formdata)), sorted(['a', 'b']))
         self.assertTrue('b' in formdata)
         self.assertTrue('fake' not in formdata)
         self.assertEqual(formdata.getlist('a'), ['Apple', 'Cherry'])
