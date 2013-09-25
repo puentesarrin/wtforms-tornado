@@ -26,7 +26,7 @@ setup(
     url='https://github.com/puentesarrin/wtforms-tornado',
     description='WTForms extensions for Tornado.',
     long_description=readme_content,
-    author=u'Jorge Puente Sarrín',
+    author='Jorge Puente Sarrín',
     author_email='puentesarrin@gmail.com',
     packages=['wtforms_tornado'],
     keywords=['wtforms', 'tornado', 'validation'],
