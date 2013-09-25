@@ -11,14 +11,13 @@ except ImportError:
 version = '0.0.1'
 
 
-f = open('README.rst')
+readme_content = ''
 try:
-    try:
-        readme_content = f.read()
-    except:
-        readme_content = ''
-finally:
+    f = open('README.rst')
+    readme_content = f.read()
     f.close()
+except:
+    pass
 
 setup(
     name='wtforms-tornado',
