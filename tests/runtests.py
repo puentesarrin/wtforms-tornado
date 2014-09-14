@@ -14,6 +14,7 @@ from wtforms_tornado import Form
 
 
 class SneakyField(Field):
+
     def __init__(self, sneaky_callable, *args, **kwargs):
         super(SneakyField, self).__init__(*args, **kwargs)
         self.sneaky_callable = sneaky_callable
@@ -23,6 +24,7 @@ class SneakyField(Field):
 
 
 class TornadoWrapperTest(TestCase):
+
     def setUp(self):
         self.test_values = HTTPRequest('GET',
             'http://localhost?a=Apple&b=Banana&a=Cherry')
