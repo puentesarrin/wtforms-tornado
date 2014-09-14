@@ -8,6 +8,10 @@ WTForms extensions for Tornado.
     :target: https://travis-ci.org/puentesarrin/wtforms-tornado
     :alt: Travis CI status
 
+.. image:: https://coveralls.io/repos/puentesarrin/wtforms-tornado/badge.png
+   :target: https://coveralls.io/r/puentesarrin/wtforms-tornado
+   :alt: Coveralls status
+
 Usage
 =====
 
