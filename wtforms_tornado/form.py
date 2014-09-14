@@ -29,7 +29,7 @@ class TornadoInputWrapper(object):
 
     def getlist(self, name):
         try:
-            return list(self._wrapped[name])
+            return [escape.to_unicode(v) for v in self._wrapped[name]]
         except KeyError:
             return []
 
