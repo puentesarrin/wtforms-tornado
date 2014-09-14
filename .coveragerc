@@ -1,0 +1,6 @@
+[run]
+source = wtforms_tornado
+
+[report]
+exclude_lines =
+    pragma: no cover
