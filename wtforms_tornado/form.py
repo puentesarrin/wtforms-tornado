@@ -29,13 +29,7 @@ class TornadoInputWrapper(object):
 
     def getlist(self, name):
         try:
-            values = []
-            for value in self._wrapped[name]:
-                value = escape.to_unicode(value)
-                if isinstance(value, text_type):
-                    value = re.sub(r'[\x00-\x08\x0e-\x1f]', ' ', value)
-                values.append(value)
-            return values
+            return list(self._wrapped[name])
         except KeyError:
             return []
 
