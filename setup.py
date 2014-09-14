@@ -8,7 +8,7 @@ except ImportError:
     use_setuptools()
     from setuptools import setup
 
-version = '0.0.1'
+version = '0.0.2+'
 
 
 readme_content = ''
