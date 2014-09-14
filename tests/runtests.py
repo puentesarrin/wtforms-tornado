@@ -8,7 +8,7 @@ from unittest import TestCase
 from wtforms.fields import Field, TextField, _unset_value
 from wtforms.validators import Required
 from tornado import locale, web, testing
-from tornado.httpserver import HTTPRequest
+from tornado.httputil import HTTPServerRequest
 from wtforms_tornado.form import TornadoInputWrapper
 from wtforms_tornado import Form
 
@@ -23,11 +23,24 @@ class SneakyField(Field):
         self.sneaky_callable(formdata)
 
 
+class _Connection(object):
+
+    def __init__(self, context):
+        self.context = context
+
+
+class _Context(object):
+
+    remote_ip = None
+
+
 class TornadoWrapperTest(TestCase):
 
     def setUp(self):
-        self.test_values = HTTPRequest('GET',
-            'http://localhost?a=Apple&b=Banana&a=Cherry')
+        connection = _Connection(_Context())
+        self.test_values = HTTPServerRequest('GET',
+            'http://localhost?a=Apple&b=Banana&a=Cherry',
+            connection=connection)
         self.empty_mdict = TornadoInputWrapper({})
         self.filled_mdict = TornadoInputWrapper(self.test_values.arguments)
 
