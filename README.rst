@@ -12,11 +12,11 @@ WTForms extensions for Tornado.
    :target: https://coveralls.io/r/puentesarrin/wtforms-tornado
    :alt: Coveralls status
 
-.. image:: https://pypip.in/v/wtforms-tornado/badge.png
+.. image:: https://img.shields.io/pypi/v/wtforms-tornado.svg
    :target: https://pypi.python.org/pypi/wtforms-tornado
    :alt: Latest PyPI version
 
-.. image:: https://pypip.in/d/wtforms-tornado/badge.png
+.. image:: https://img.shields.io/pypi/dm/wtforms-tornado.svg
    :target: https://pypi.python.org/pypi/wtforms-tornado
    :alt: Number of PyPI downloads
 
