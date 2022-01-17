@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
-import re
-
 from tornado import escape
 from wtforms import form
-from wtforms.compat import text_type
+
 from wtforms_tornado.i18n import TornadoTranslations
 
 
 class TornadoInputWrapper(object):
-
     def __init__(self, multidict):
         self._wrapped = multidict
 
@@ -38,9 +35,7 @@ class Form(form.Form):
     """
     A Form derivative which uses the locale module from Tornado.
     """
-
-    def __init__(self, formdata=None, obj=None, prefix='', locale_code='en_US',
-             **kwargs):
+    def __init__(self, formdata=None, obj=None, prefix='', locale_code='en_US', **kwargs):
         self._locale_code = locale_code
         super(Form, self).__init__(formdata, obj, prefix, **kwargs)
 
