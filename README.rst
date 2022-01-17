@@ -14,11 +14,14 @@ WTForms extensions for Tornado.
 
 .. image:: https://pypip.in/v/wtforms-tornado/badge.png
    :target: https://pypi.python.org/pypi/wtforms-tornado
-   :alt: Latest PyPI version
 
-.. image:: https://pypip.in/d/wtforms-tornado/badge.png
-   :target: https://pypi.python.org/pypi/wtforms-tornado
+.. image:: https://pepy.tech/badge/wtforms-tornado/month
+   :target: https://pepy.tech/project/wtforms-tornado
    :alt: Number of PyPI downloads
+
+.. image:: https://img.shields.io/pypi/v/wtforms-tornado.svg
+   :target: https://pypi.python.org/pypi/wtforms-tornado
+   :alt: Latest PyPI version
 
 Usage
 =====
