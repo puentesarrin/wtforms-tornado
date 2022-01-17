@@ -5,8 +5,13 @@ my_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.abspath(os.path.join(my_dir, '..')))
 
 from unittest import TestCase
-from wtforms.fields import Field, StringField, _unset_value
-from wtforms.validators import Required
+from wtforms.fields import Field, _unset_value
+try:
+    from wtforms.fields import TextField as StringField
+    from wtforms.validators import Required as DataRequired
+except ImportError:
+    from wtforms.fields import StringField
+    from wtforms.validators import DataRequired
 from tornado import locale, web, testing
 from tornado.httputil import HTTPServerRequest
 from wtforms_tornado.form import TornadoInputWrapper
@@ -72,7 +77,7 @@ class TornadoWrapperTest(TestCase):
 
 class SearchForm(Form):
 
-    search = StringField(validators=[Required('Search field is required')])
+    search = StringField(validators=[DataRequired('Search field is required')])
 
 
 class DummyHandler(web.RequestHandler):
