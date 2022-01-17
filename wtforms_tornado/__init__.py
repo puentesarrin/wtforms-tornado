@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
 """WTForms extensions for Tornado."""
-from wtforms import compat
-
-
-version_tuple = (0, 0, 2)
+version_tuple = (0, 0, 3, '+')
 
 
 def get_version_string():
-    if isinstance(version_tuple[-1], compat.string_types):
+    if isinstance(version_tuple[-1], str):
         return '.'.join(map(str, version_tuple[:-1])) + version_tuple[-1]
-    return '.'.join(map(str, version_tuple))
+    else:
+        return '.'.join(map(str, version_tuple))
 
 version = get_version_string()
 """Current version of wtforms-tornado."""
