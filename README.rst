@@ -12,9 +12,6 @@ WTForms extensions for Tornado.
    :target: https://coveralls.io/r/puentesarrin/wtforms-tornado
    :alt: Coveralls status
 
-.. image:: https://pypip.in/v/wtforms-tornado/badge.png
-   :target: https://pypi.python.org/pypi/wtforms-tornado
-
 .. image:: https://pepy.tech/badge/wtforms-tornado/month
    :target: https://pepy.tech/project/wtforms-tornado
    :alt: Number of PyPI downloads
