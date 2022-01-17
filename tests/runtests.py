@@ -14,12 +14,12 @@ except ImportError:
     from wtforms.validators import DataRequired
 from tornado import locale, web, testing
 from tornado.httputil import HTTPServerRequest
+
 from wtforms_tornado.form import TornadoInputWrapper
 from wtforms_tornado import Form
 
 
 class SneakyField(Field):
-
     def __init__(self, sneaky_callable, *args, **kwargs):
         super(SneakyField, self).__init__(*args, **kwargs)
         self.sneaky_callable = sneaky_callable
@@ -29,23 +29,20 @@ class SneakyField(Field):
 
 
 class _Connection(object):
-
     def __init__(self, context):
         self.context = context
 
 
 class _Context(object):
-
     remote_ip = None
 
 
 class TornadoWrapperTest(TestCase):
-
     def setUp(self):
         connection = _Connection(_Context())
-        self.test_values = HTTPServerRequest('GET',
-            'http://localhost?a=Apple&b=Banana&a=Cherry',
-            connection=connection)
+        self.test_values = HTTPServerRequest(
+            'GET', 'http://localhost?a=Apple&b=Banana&a=Cherry', connection=connection
+        )
         self.empty_mdict = TornadoInputWrapper({})
         self.filled_mdict = TornadoInputWrapper(self.test_values.arguments)
 
@@ -76,12 +73,10 @@ class TornadoWrapperTest(TestCase):
 
 
 class SearchForm(Form):
-
     search = StringField(validators=[DataRequired('Search field is required')])
 
 
 class DummyHandler(web.RequestHandler):
-
     def get_user_locale(self):
         return locale.get(self.get_argument('locale', 'en_US'))
 
@@ -97,9 +92,7 @@ class DummyHandler(web.RequestHandler):
                 self.finish(form.errors)
 
 
-class TornadoApplicationTest(testing.AsyncHTTPTestCase,
-                             testing.LogTrapTestCase):
-
+class TornadoApplicationTest(testing.AsyncHTTPTestCase):
     def setUp(self):
         super(TornadoApplicationTest, self).setUp()
         locale.load_translations('tests/translations')
@@ -115,8 +108,7 @@ class TornadoApplicationTest(testing.AsyncHTTPTestCase,
     def test_wrong_form(self):
         response = self.fetch('/?fake=wtforms')
         self.assertEqual(response.code, 500)
-        self.assertEqual(response.body,
-                         b'{"search": ["Search field is required"]}')
+        self.assertEqual(response.body, b'{"search": ["Search field is required"]}')
 
     def test_translations_default(self):
         response = self.fetch('/?label=True&search=wtforms')
@@ -129,6 +121,7 @@ class TornadoApplicationTest(testing.AsyncHTTPTestCase,
     def test_translations_es(self):
         response = self.fetch('/?locale=es_ES&label=True&search=wtforms')
         self.assertEqual(response.body, b'B\xc3\xbasqueda')
+
 
 if __name__ == '__main__':
     from unittest import main
