@@ -27,6 +27,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        python -m pip install wtforms tornado
     - name: Run tests
       run: |
         python tests/runtests.py
