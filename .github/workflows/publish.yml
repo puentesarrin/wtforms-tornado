@@ -1,8 +1,9 @@
 name: Publish package
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - "*"
   workflow_dispatch:
 
 jobs:
