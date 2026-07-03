@@ -4,11 +4,19 @@ WTForms-Tornado
 
 WTForms extensions for Tornado.
 
-WTForms-Tornado targets Python 3.11+.
+.. image:: https://github.com/puentesarrin/wtforms-tornado/actions/workflows/ci.yml/badge.svg
+   :target: https://github.com/puentesarrin/wtforms-tornado/actions/workflows/ci.yml
+   :alt: CI status
+
+.. image:: https://coveralls.io/repos/github/puentesarrin/wtforms-tornado/badge.svg?branch=master
+   :target: https://coveralls.io/github/puentesarrin/wtforms-tornado?branch=master
+   :alt: Coverage status
 
 .. image:: https://img.shields.io/pypi/v/wtforms-tornado.svg
-   :target: https://pypi.python.org/pypi/wtforms-tornado
-   :alt: Latest PyPI version
+   :target: https://pypi.org/project/wtforms-tornado/
+   :alt: PyPI version
+
+WTForms-Tornado targets Python 3.11+.
 
 Usage
 =====
