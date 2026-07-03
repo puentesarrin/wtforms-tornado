@@ -5,7 +5,7 @@ from setuptools import setup
 
 setup(
     name='wtforms-tornado',
-    version='0.0.3.dev0',
+    version='0.1.0.dev0',
     url='https://github.com/puentesarrin/wtforms-tornado',
     description='WTForms extensions for Tornado.',
     long_description=Path('README.rst').read_text(encoding='utf-8'),
