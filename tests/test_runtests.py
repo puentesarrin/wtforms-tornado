@@ -1,39 +1,33 @@
 #!/usr/bin/env python
-import os
-import sys
-my_dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.abspath(os.path.join(my_dir, '..')))
 
-from unittest import TestCase
-from wtforms.fields import Field, _unset_value
-try:
-    from wtforms.fields import TextField as StringField
-    from wtforms.validators import Required as DataRequired
-except ImportError:
-    from wtforms.fields import StringField
-    from wtforms.validators import DataRequired
-from tornado import locale, web, testing
+from pathlib import Path
+from unittest import TestCase, main
+
+from tornado import locale, testing, web
 from tornado.httputil import HTTPServerRequest
+from wtforms.fields import Field, StringField, _unset_value
+from wtforms.validators import DataRequired
 
-from wtforms_tornado.form import TornadoInputWrapper
-from wtforms_tornado import Form
+from wtforms_tornado import Form, TornadoInputWrapper
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 class SneakyField(Field):
     def __init__(self, sneaky_callable, *args, **kwargs):
-        super(SneakyField, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.sneaky_callable = sneaky_callable
 
     def process(self, formdata, data=_unset_value):
         self.sneaky_callable(formdata)
 
 
-class _Connection(object):
+class _Connection:
     def __init__(self, context):
         self.context = context
 
 
-class _Context(object):
+class _Context:
     remote_ip = None
 
 
@@ -48,7 +42,7 @@ class TornadoWrapperTest(TestCase):
 
     def test_automatic_wrapping(self):
         def _check(formdata):
-            self.assertTrue(isinstance(formdata, TornadoInputWrapper))
+            self.assertIsInstance(formdata, TornadoInputWrapper)
 
         form = Form({'a': SneakyField(_check)})
         form.process(self.filled_mdict)
@@ -84,18 +78,17 @@ class DummyHandler(web.RequestHandler):
         form = SearchForm(self.request.arguments, locale_code=self.locale.code)
         if bool(self.get_argument('label', False)):
             self.finish(form.search.label.text)
+        elif form.validate():
+            self.finish(form.data)
         else:
-            if form.validate():
-                self.finish(form.data)
-            else:
-                self.set_status(500)
-                self.finish(form.errors)
+            self.set_status(500)
+            self.finish(form.errors)
 
 
 class TornadoApplicationTest(testing.AsyncHTTPTestCase):
     def setUp(self):
-        super(TornadoApplicationTest, self).setUp()
-        locale.load_translations('tests/translations')
+        super().setUp()
+        locale.load_translations(str(PROJECT_ROOT / 'tests' / 'translations'))
 
     def get_app(self):
         return web.Application([('/', DummyHandler)])
@@ -124,5 +117,4 @@ class TornadoApplicationTest(testing.AsyncHTTPTestCase):
 
 
 if __name__ == '__main__':
-    from unittest import main
     main()

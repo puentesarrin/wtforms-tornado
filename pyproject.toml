@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wtforms-tornado"
+version = "0.1.0.dev0"
+description = "WTForms extensions for Tornado."
+readme = "README.rst"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "Jorge Puente Sarrín", email = "puentesarrin@gmail.com" },
+]
+keywords = ["wtforms", "tornado", "validation"]
+dependencies = [
+    "Tornado>=6.4,<7",
+    "WTForms>=3.1,<4",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "ruff>=0.6",
+]
+
+[tool.setuptools]
+packages = ["wtforms_tornado"]
+[tool.ruff]
+line-length = 120
+target-version = "py311"

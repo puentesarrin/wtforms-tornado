@@ -4,17 +4,7 @@ WTForms-Tornado
 
 WTForms extensions for Tornado.
 
-.. image:: https://travis-ci.org/puentesarrin/wtforms-tornado.png
-    :target: https://travis-ci.org/puentesarrin/wtforms-tornado
-    :alt: Travis CI status
-
-.. image:: https://coveralls.io/repos/puentesarrin/wtforms-tornado/badge.png
-   :target: https://coveralls.io/r/puentesarrin/wtforms-tornado
-   :alt: Coveralls status
-
-.. image:: https://pepy.tech/badge/wtforms-tornado/month
-   :target: https://pepy.tech/project/wtforms-tornado
-   :alt: Number of PyPI downloads
+WTForms-Tornado targets Python 3.11+.
 
 .. image:: https://img.shields.io/pypi/v/wtforms-tornado.svg
    :target: https://pypi.python.org/pypi/wtforms-tornado
@@ -28,7 +18,7 @@ Usage
    import tornado.ioloop
    import tornado.web
 
-   from wtforms.fields import IntegerField
+   from wtforms import IntegerField
    from wtforms.validators import DataRequired
    from wtforms_tornado import Form
 
@@ -39,7 +29,7 @@ Usage
 
    class SumHandler(tornado.web.RequestHandler):
        def get(self):
-           self.write("Hello, world")
+           self.write('Hello, world')
 
        def post(self):
            form = SumForm(self.request.arguments)
@@ -47,7 +37,7 @@ Usage
                self.write(str(form.data['a'] + form.data['b']))
            else:
                self.set_status(400)
-               self.write("" % form.errors)
+               self.write(str(form.errors))
 
    application = tornado.web.Application([
        (r"/", SumHandler),
@@ -55,25 +45,22 @@ Usage
 
    if __name__ == "__main__":
        application.listen(8888)
-       tornado.ioloop.IOLoop.instance().start()
+       tornado.ioloop.IOLoop.current().start()
 
 Installation
 ============
 
-You can to use pip_ to install WTForms-Tornado::
+Install the package with pip::
 
-   $ pip install wtforms-tornado
+   pip install wtforms-tornado
 
-Or using last source::
+Or from a local checkout::
 
-   $ pip install git+git://github.com/puentesarrin/wtforms-tornado.git
+   pip install .
 
-Or manually, download the latest source from PyPI_::
+For development work, install the dev extras::
 
-   $ tar xvzf wtforms-tornado-$VERSION.tar.gz
-   $ cd wtforms-tornado-$VERSION
-   $ python setup.py build
-   $ sudo python setup.py install
+   pip install -e '.[dev]'
 
-.. _pip: https://pypi.python.org/pypi/pip
-.. _PyPI: https://pypi.python.org/pypi/wtforms-tornado
+.. _pip: https://pip.pypa.io/
+.. _PyPI: https://pypi.org/project/wtforms-tornado/

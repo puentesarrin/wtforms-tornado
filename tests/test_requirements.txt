@@ -1,2 +1,2 @@
-wtforms
-tornado
+WTForms>=3.1,<4
+Tornado>=6.4,<7
